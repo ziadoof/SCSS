@@ -1,0 +1,33 @@
+$orange : orange;
+$yellow : yellow;
+$grey : grey;
+
+@mixin round ($color, $size,$left:0) {
+  display:inline-block;
+  position:relative;
+  top:$size*10px;
+  left:-$left*1px;
+  border-width: $size*2px;
+  border-style: solid;
+  border-color: $color;
+  width: $size*20px;
+  height: $size*20px;
+  border-radius: $size*20px;
+  box-shadow:$size*1px $size*1px $size*1px $color inset,
+  $size*1px $size*1px $size*1px $color;
+  margin-top: 10px;
+}
+
+.cercle-yellow{
+  @include round($yellow, 9);
+}
+.cercle-orange{
+  @include round($orange, 3);
+}
+@for $var from 0 through 5
+{
+
+  .cercle-grey-#{$var+1}{
+    @include round($grey, $var+1, $var*20+$var*$var*4);
+  }
+}
